@@ -1,17 +1,15 @@
 from flask import Flask
 
-app = Flask(__name__)
+from app.KettleStatus import KettleStatus_blueprint
+
+kettle_app = Flask(__name__)
+kettle_app.register_blueprint(KettleStatus_blueprint)
 
 
-@app.route('/')
+@kettle_app.route('/')
 def index():
-    return "Hello World"
-
-
-@app.route('/test-of-paths')
-def index2():
-    return "Test Succeeded"
+    return "This is the IOT kettle endpoint"
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    kettle_app.run(debug=True)
